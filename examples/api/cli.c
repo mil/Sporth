@@ -1,6 +1,6 @@
 /* A sporth parser using libsporth                                      */
 /* To compile:                                                          */
-/* gcc api_example.c -lsporth -lsoundpipe -lsndfile -lm -o api_example  */
+/* gcc cli.c -lsporth -lsoundpipe -lsndfile -lm -o cli */
 #include <stdio.h>
 #include <stdlib.h>
 #include <soundpipe.h>
