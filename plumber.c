@@ -180,7 +180,7 @@ void plumber_write_code(plumber_data *plumb, FILE *fp)
 int plumbing_destroy(plumbing *pipes)
 {
 #ifdef DEBUG_MODE
-    plumber_print(plumb, "----Plumber Destroy----\n");
+    fprintf(stderr, "----Plumber Destroy----\n");
 #endif
     uint32_t n;
     plumber_pipe *pipe, *next;
@@ -188,7 +188,7 @@ int plumbing_destroy(plumbing *pipes)
     for(n = 0; n < pipes->npipes; n++) {
         next = pipe->next;
 #ifdef DEBUG_MODE
-        plumber_print(plumb, "Pipe %d\ttype %d\n", n, pipe->type);
+        fprintf(stderr, "Pipe %d\ttype %d\n", n, pipe->type);
 #endif
 
         if(pipe->type == SPORTH_FLOAT || pipe->type == SPORTH_STRING) {
