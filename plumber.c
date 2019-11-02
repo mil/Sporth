@@ -528,13 +528,22 @@ void sporth_run(plumber_data *pd, int argc, char *argv[],
 "    -b (backend output driver) [jack|file|raw|plot|spa]\n"
 "        'jack' is recommended, but you must install 'jackd' package.\n"
 "    -p (jack port #, if using jack. Optional.)\n"
+"    -0 (use a null file for input, only relevant for live coding with jack)\n"
+"    -P (show progress bar output from soundpipe. Optional)\n"
 "    -h (this help, of course!)\n"
+"\n"
 "A simple example for running a stereo sporth process through jack.\n"
 "Runs for an indefinite length:\n"
 "    sporth -r 48000 -c 2 -b jack myinput.sp\n"
+"\n"
 "Another example, non-realtime, using the same input, but writing 11 seconds\n"
 "to a file called 'myoutput.wav', using an samplerate of 44100 and mono:\n"
-"    sporth -d 11s -r 44100 -c 1 -o myoutput.wav myinput.sp\n\n");
+"    sporth -d 11s -r 44100 -c 1 -o myoutput.wav myinput.sp\n"
+"\n"
+"You can do UDP-based live-coding with jack (e.g. dynamically swap the sporth\n"
+"patch) by using the jack driver in combination with the null file (-0):\n"
+"    sporth -b jack -0\n"
+"    sp_eval_file myinput.sp\n");
                 exit(1);
                 break;
             case 'n':
