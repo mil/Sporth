@@ -260,7 +260,7 @@ Description: p register get
 ---
 Name: pset
 Args: val (f), num (f)
-Output: f
+Output: (none)
 Description: p register set
 ---
 Name: eq
@@ -316,7 +316,7 @@ Description: Generates a line from ordered list of breakpoints.
 Name: dmetro
 Args: time (f)
 Output: f
-Description: Trigger envelope, using time instead of frequency
+Description: Trigger envelope, using time (as seconds) instead of frequency
 ---
 Name: pluck
 Args: trigger (f), freq (f), amp (f), ifreq (f)
