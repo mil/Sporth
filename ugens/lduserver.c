@@ -18,9 +18,9 @@
 
 typedef struct {
     int sockfd;
-} sporth_udp_d;
+} sporth_lduserver_d;
 
-int sporth_udpr(sporth_stack *stack, void *ud)
+int sporth_lduserver(sporth_stack *stack, void *ud)
 {
     plumber_data *pd = ud;
 
@@ -31,22 +31,22 @@ int sporth_udpr(sporth_stack *stack, void *ud)
     char *hello = "Hello from server";
     struct sockaddr_in servaddr, cliaddr;
 
-    sporth_udp_d *udpr;
+    sporth_lduserver_d *lduserver;
 
     SPFLOAT out;
     switch (pd->mode) {
 
 
     case PLUMBER_CREATE:
-        udpr = malloc(sizeof(sporth_udp_d));
-        if ((udpr->sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
+        lduserver = malloc(sizeof(sporth_lduserver_d));
+        if ((lduserver->sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
             fprintf(stderr, "socket creation failed\n");
             exit(EXIT_FAILURE);
         }
         fcntl(
-            udpr->sockfd,
+            lduserver->sockfd,
             F_SETFL,
-            fcntl(udpr->sockfd, F_GETFL) | O_NONBLOCK
+            fcntl(lduserver->sockfd, F_GETFL) | O_NONBLOCK
         );
 
         memset(&servaddr, 0, sizeof(servaddr));
@@ -54,32 +54,32 @@ int sporth_udpr(sporth_stack *stack, void *ud)
         servaddr.sin_family    = AF_INET;
         servaddr.sin_addr.s_addr = INADDR_ANY;
         servaddr.sin_port = htons(PORT);
-        if (setsockopt(udpr->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
+        if (setsockopt(lduserver->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
         1
     }, sizeof(int)) < 0) {
             fprintf(stderr, "setsockopt(SO_REUSEADDR) failed\n");
         }
-        if (bind(udpr->sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) {
+        if (bind(lduserver->sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) {
             fprintf(stderr, "bind failed\n");
             exit(EXIT_FAILURE);
         }
 
-        plumber_add_ugen(pd, SPORTH_UDPR, udpr);
+        plumber_add_ugen(pd, SPORTH_LDUSERVER, lduserver);
         sporth_stack_push_float(stack, 0);
         break;
 
 
     case PLUMBER_INIT:
-        udpr = pd->last->ud;
-        /*udpr-> ldu = sporth_stack_pop_string(stack);*/
+        lduserver = pd->last->ud;
+        /*lduserver-> ldu = sporth_stack_pop_string(stack);*/
         sporth_stack_push_float(stack, 0);
         break;
 
 
     case PLUMBER_COMPUTE:
-        udpr = pd->last->ud;
+        lduserver = pd->last->ud;
         n = recvfrom(
-                udpr->sockfd,
+                lduserver->sockfd,
                 (char *)buffer,
                 MAXLINE,
                 MSG_WAITALL,
@@ -111,8 +111,8 @@ int sporth_udpr(sporth_stack *stack, void *ud)
         break;
 
     case PLUMBER_DESTROY:
-        udpr = pd->last->ud;
-        free(udpr);
+        lduserver = pd->last->ud;
+        free(lduserver);
         break;
 
 

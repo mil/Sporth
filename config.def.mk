@@ -61,6 +61,7 @@ incr \
 jcrev \
 jitter \
 ldu \
+lduserver \
 line \
 load \
 loadfile \
@@ -143,7 +144,6 @@ tphasor \
 trand \
 tseg \
 tseq \
-udpr \
 v \
 vdelay \
 voc \

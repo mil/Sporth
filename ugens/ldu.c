@@ -19,6 +19,8 @@ typedef struct {
     char * str;
     char * strdown;
     char * strup;
+
+    int isdown;
 } sporth_ldu_d;
 
 int oscPadActionToDigit(char *s)
@@ -73,6 +75,7 @@ int sporth_ldu(sporth_stack *stack, void *ud)
         ldu->str = malloc(10);
         ldu->strdown = malloc(10);
         ldu->strup = malloc(10);
+        ldu->isdown = 0;
 
         ldu->str = sporth_stack_pop_string(stack);
         strcpy(ldu->strdown, ldu->str);
@@ -94,14 +97,16 @@ int sporth_ldu(sporth_stack *stack, void *ud)
         ldu = pd->last->ud;
         if ((int) pd->p[15] == ldu->numdown) {
             fprintf(stderr, "(DOWN!) Computing %s and %f\n", ldu->str, pd->p[15]);
-            out = 2;
+            ldu->isdown = 1;
+            out = 1;
         } else if ((int) pd->p[15] == ldu->numup) {
             fprintf(stderr, "(UP!) Computing %s and %f\n", ldu->str, pd->p[15]);
-            out = 1;
+            ldu->isdown = 0;
+            out = 2;
         } else {
             out = 0;
         }
-        sporth_stack_push_float(stack, out);
+        sporth_stack_push_float(stack, ldu->isdown);
         break;
     case PLUMBER_DESTROY:
         ldu = pd->last->ud;
