@@ -118,6 +118,11 @@ Args: f
 Output: f f
 Description: Duplicates last item on the stack.
 ---
+Name: dup2
+Args: f f
+Output: f f f f
+Description: Duplicates the last two items on the stack. (Useful for stereo signals)
+---
 Name: swap
 Args: f f
 Output: f f
