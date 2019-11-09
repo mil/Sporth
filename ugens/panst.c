@@ -18,7 +18,7 @@ int sporth_panst(sporth_stack *stack, void *ud)
 #endif
 
             sp_panst_create(&panst);
-            plumber_add_ugen(pd, SPORTH_PAN, panst);
+            plumber_add_ugen(pd, SPORTH_PANST, panst);
             if(sporth_check_args(stack, "fff") != SPORTH_OK) {
                 plumber_print(pd,"Not enough arguments for panst\n");
                 stack->error++;
@@ -27,7 +27,6 @@ int sporth_panst(sporth_stack *stack, void *ud)
             pan = sporth_stack_pop_float(stack);
             in_right = sporth_stack_pop_float(stack);
             in_left = sporth_stack_pop_float(stack);
-            sporth_stack_push_float(stack, 0);
             sporth_stack_push_float(stack, 0);
             sporth_stack_push_float(stack, 0);
             break;
@@ -41,7 +40,6 @@ int sporth_panst(sporth_stack *stack, void *ud)
             in_left = sporth_stack_pop_float(stack);
             panst = pd->last->ud;
             sp_panst_init(pd->sp, panst);
-            sporth_stack_push_float(stack, 0);
             sporth_stack_push_float(stack, 0);
             sporth_stack_push_float(stack, 0);
             break;
