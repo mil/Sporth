@@ -426,7 +426,12 @@ Description: Exponential Envelope Generator
 Name: pan
 Args: in (f) pan (f)
 Output: ff
-Description: Equal power panning. -1 = hardL 1 = hardR
+Description: Equal (mono to stereo) power panning. -1 = hardL 1 = hardR
+---
+Name: panst
+Args: in left (f), in right (f), pan (f)
+Output: f f
+Description: Equal (stereo) power panning. -1 = hardL 1 = hardR
 ---
 Name: jitter
 Args: amp (f) cpsMin (f) cpsMax(f)
