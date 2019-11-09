@@ -618,6 +618,11 @@ Args: table name (s), file name (s)
 Output: n/a
 Description: load a (mono) audio file into a table
 ---
+Name: loadfile2
+Args: left channel table name (s), right channel table name (s), file name (s)
+Output: n/a
+Description: load a (stereo) audio file into two separate tables
+---
 Name: paulstretch
 Args: stretch (F), window size (F), tbl (s)
 Output: f

@@ -63,6 +63,7 @@ jitter \
 line \
 load \
 loadfile \
+loadfile2 \
 loadspa \
 lpc \
 lpf18 \
