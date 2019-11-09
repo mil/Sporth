@@ -38,6 +38,8 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
 
 
     case PLUMBER_CREATE:
+        system("oscsend localhost 9903 /mapper/pad/all s lightoff");
+
         lduserver = malloc(sizeof(sporth_lduserver_d));
         if ((lduserver->sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
             fprintf(stderr, "socket creation failed\n");
@@ -92,15 +94,16 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
             pd->p[15] = 0;
             /*fprintf(stderr, "Read Error: %d - %s\n", errno, strerror(errno)); */
         } else if (n > 0) {
-            /* fprintf(stderr, "Buffer %d [%s]\n", n, buffer );*/
-            if (strncmp("/pad", buffer, 4) == 0) {
-                int i;
-                for (i = 0; i < n; i++) {
-                    if (buffer[i] == '\0') {
-                        buffer[i] =  ' ';
-                    }
+            int i;
+            for (i = 0; i < n; i++) {
+                if (buffer[i] == '\0') {
+                    buffer[i] =  ' ';
                 }
+            }
 
+
+            fprintf(stderr, "Buffer %d [%s]\n", n, buffer );
+            if (strncmp("/pad", buffer, 4) == 0) {
                 char holder[50];
                 sscanf(buffer, "/pad    ,s %s", &holder);
                 pd->p[15] = oscPadActionToDigit(holder);

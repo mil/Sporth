@@ -66,11 +66,13 @@ int sporth_ldu(sporth_stack *stack, void *ud)
 {
     plumber_data *pd = ud;
     SPFLOAT out;
+    char * msg;
 
     sporth_ldu_d *ldu;
 
     switch (pd->mode) {
     case PLUMBER_CREATE:
+
         ldu = malloc(sizeof(sporth_ldu_d));
         ldu->str = malloc(10);
         ldu->strdown = malloc(10);
@@ -84,6 +86,10 @@ int sporth_ldu(sporth_stack *stack, void *ud)
         ldu->strup = strcat(ldu->strup, ",up");
         ldu->numdown = oscPadActionToDigit(ldu->strdown);
         ldu->numup = oscPadActionToDigit(ldu->strup);
+
+        msg = malloc(200);
+        sprintf(msg, "oscsend localhost 9903 /mapper/pad/%s s lighton", ldu->str);
+        system(msg);
 
         plumber_add_ugen(pd, SPORTH_LDU, ldu);
         sporth_stack_push_float(stack, 0);
@@ -110,6 +116,9 @@ int sporth_ldu(sporth_stack *stack, void *ud)
         break;
     case PLUMBER_DESTROY:
         ldu = pd->last->ud;
+        sprintf(msg, "oscsend localhost 9903 /mapper/pad/%s s lightoff", ldu->str);
+        system(msg);
+        free(msg);
         free(ldu);
         break;
     default:
