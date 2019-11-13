@@ -3,10 +3,15 @@ Args: v1 (f)
 Output: f
 Description: Performs absolute value.
 ---
-Name: add
+Name: add (alias: +)
 Args: v1 (f), v2 (f)
 Output: f
 Description: Performs addition.
+---
+Name: add2 (alias: .)
+Args: l1 (f), r1 (f), l2 (f), r2 (f)
+Output: f f
+Description: Performs addition on stereo signals.
 ---
 Name: biscale
 Args: v1 (f), min (f), max (f)

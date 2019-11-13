@@ -5,6 +5,7 @@ atone \
 autowah \
 bal \
 basic \
+basic_stereo \
 biscale \
 bitcrush \
 bitwise \
