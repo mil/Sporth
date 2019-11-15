@@ -23,11 +23,11 @@ int sporth_delay(sporth_stack *stack, void *ud)
                 stack->error++;
                 return PLUMBER_NOTOK;
             }
+            time = sporth_stack_pop_float(stack);
             if (time <= 0) {
                 plumber_print(pd, "Time argument must be > 0 for delay.\n");
                 return PLUMBER_NOTOK;
             }
-            time = sporth_stack_pop_float(stack);
             feedback = sporth_stack_pop_float(stack);
             input = sporth_stack_pop_float(stack);
             sporth_stack_push_float(stack, 0);

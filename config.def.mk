@@ -78,6 +78,7 @@ metro \
 mincer \
 mode \
 moogladder \
+mute \
 noise \
 nsmp \
 osc \
