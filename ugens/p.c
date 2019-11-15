@@ -48,7 +48,7 @@ int sporth_p(sporth_stack *stack, void *ud)
         case PLUMBER_DESTROY:
             break;
         default:
-            plumber_print(pd, "switch: unknown mode!\n");
+            plumber_print(pd, "p: unknown mode!\n");
             break;
     }
     return PLUMBER_OK;
