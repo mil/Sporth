@@ -1008,3 +1008,8 @@ Args: source, excitation, quality
 Output: f
 Description: high-resolution vocoder
 ---
+Name: stream
+Args: specstring (s)
+Output: f
+Description: Dispatch float values at times; format: VALUE:TIME,VALUE:TIME,...
+---

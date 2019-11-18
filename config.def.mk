@@ -1,4 +1,5 @@
 UGENS = \
+stream \
 adsr \
 allpass \
 atone \
