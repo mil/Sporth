@@ -19,11 +19,11 @@ fi
 if [ "$OS" = "Linux" ]
 then
 FIELD=1
-elif [ "$OS" = "Darwin" ]
+elif [ "$OS" = "Darwin" ] || [ "$OS" = "OpenBSD" ]
 then
 FIELD=2
 else
-echo "Requires macOS or Linux."
+echo "Requires macOS, OpenBSD, or Linux."
 exit 1
 fi
 
