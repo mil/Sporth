@@ -157,14 +157,14 @@ wpkorg35 \
 zeros \
 zitarev
 
-# Disable libdl
-# NO_LIBDL=1
+# Disable libdl (OpenBSD has no libdl)
+NO_LIBDL=1
 
 # Build jack driver
-# BUILD_JACK=1
+BUILD_JACK=1
 
 # polysporth support
-BUILD_POLYSPORTH=1
+# BUILD_POLYSPORTH=1
 
 # Build live coding UDP listener
 LIVE_CODING=1
