@@ -5,6 +5,8 @@
 #include <stdarg.h>
 #include "plumber.h"
 
+int parserbuffersize = 1000000;
+
 enum {
     SPACE,
     STRING,
@@ -269,16 +271,16 @@ size_t sporth_getline(char **lineptr, size_t *n, FILE *stream) {
         return -1;
     }
     if (bufptr == NULL) {
-        bufptr = malloc(128);
+        bufptr = malloc(parserbuffersize);
         if (bufptr == NULL) {
             return -1;
         }
-        size = 128;
+        size = parserbuffersize;
     }
     p = bufptr;
     while(c != EOF) {
         if ((p - bufptr) > (size - 1)) {
-            size = size + 128;
+            size = size + parserbuffersize;
             bufptr = realloc(bufptr, size);
             if (bufptr == NULL) {
                 return -1;
