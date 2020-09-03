@@ -162,6 +162,8 @@ NO_LIBDL=1
 # Build jack driver
 BUILD_JACK=1
 
+DEBUG_MODE=1
+
 # polysporth support
 # BUILD_POLYSPORTH=1
 
