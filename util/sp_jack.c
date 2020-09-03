@@ -156,7 +156,8 @@ int sp_process_jack(plumber_data *pd,
     jd.run = 1;
 
     if(wait) {
-        fgetc(stdin);
+        sleep(999999999999999999);
+        //fgetc(stdin);
         plumber_stop_jack(pd, wait);
     }
 
