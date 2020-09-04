@@ -102,7 +102,7 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
             }
 
 
-            fprintf(stderr, "Buffer %d [%s]\n", n, buffer );
+            //fprintf(stderr, "Buffer %d [%s]\n", n, buffer );
             if (strncmp("/pad", buffer, 4) == 0) {
                 char holder[50];
                 sscanf(buffer, "/pad    ,s %s", &holder);
