@@ -56,11 +56,11 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
         servaddr.sin_family    = AF_INET;
         servaddr.sin_addr.s_addr = INADDR_ANY;
         servaddr.sin_port = htons(PORT);
-        if (setsockopt(lduserver->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
-        1
-    }, sizeof(int)) < 0) {
-            fprintf(stderr, "setsockopt(SO_REUSEADDR) failed\n");
-        }
+        //if (setsockopt(lduserver->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
+        //1
+        //  }, sizeof(int)) < 0) {
+        //    fprintf(stderr, "setsockopt(SO_REUSEADDR) failed\n");
+        //}
         if (bind(lduserver->sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) {
             fprintf(stderr, "bind failed\n");
             exit(EXIT_FAILURE);
