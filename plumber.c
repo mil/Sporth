@@ -84,12 +84,14 @@ int plumbing_compute(plumber_data *plumb, plumbing *pipes, int mode)
             case SPORTH_FLOAT:
                 fval = pipe->ud;
                 if(mode != PLUMBER_DESTROY)
-                    sporth_stack_push_float(&sporth->stack, *fval);
+                    if (sporth_stack_push_float(&sporth->stack, *fval) != PLUMBER_OK)
+                      return PLUMBER_NOTOK;
                 break;
             case SPORTH_STRING:
                 sval = pipe->ud;
                 if(mode == PLUMBER_INIT)
-                    sporth_stack_push_string(&sporth->stack, &sval);
+                    if (sporth_stack_push_string(&sporth->stack, &sval) != PLUMBER_OK)
+                      return PLUMBER_NOTOK;
                 break;
             default:
                 plumb->last = pipe;
@@ -110,8 +112,7 @@ int plumbing_compute(plumber_data *plumb, plumbing *pipes, int mode)
 
 int plumber_compute(plumber_data *plumb, int mode)
 {
-    plumbing_compute(plumb, plumb->pipes, mode);
-    return PLUMBER_OK;
+    return plumbing_compute(plumb, plumb->pipes, mode);
 }
 
 void plumber_show_pipes(plumber_data *plumb)
@@ -632,7 +633,8 @@ void sporth_run(plumber_data *pd, int argc, char *argv[],
     }
 
     if(rc == PLUMBER_OK){
-        plumber_compute(pd, PLUMBER_INIT);
+        if (plumber_compute(pd, PLUMBER_INIT) != PLUMBER_OK)
+          plumber_error(pd, "Error with plumbing");
         pd->sporth.stack.pos = 0;
 #ifdef DEBUG_MODE
         plumber_show_pipes(pd);

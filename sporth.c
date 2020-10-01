@@ -21,6 +21,10 @@ static void process(sp_data *sp, void *udata){
 
     for (chan = 0; chan < sp->nchan; chan++) {
         out = sporth_stack_pop_float(&pd->sporth.stack);
+        if (&pd->sporth.stack.error > 0) {
+          fprintf(stderr, "Got an error in the sporth stack!\n");
+          exit(1);
+        }
         sp->out[chan] = out;
     }
 
