@@ -84,7 +84,7 @@ float sporth_stack_pop_float(sporth_stack *stack)
     pstack = &stack->stack[stack->pos - 1];
 
     if(pstack->type != SPORTH_FLOAT) {
-        fprintf(stderr, "Value is not a float.\n");
+        fprintf(stderr, "Value is not a float but is instead of type=%d.\n", pstack->type);
         stack->error++;
         return SPORTH_NOTOK;
     }
