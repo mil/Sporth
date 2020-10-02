@@ -102,11 +102,11 @@ int sporth_ldu(sporth_stack *stack, void *ud)
     case PLUMBER_COMPUTE:
         ldu = pd->last->ud;
         if ((int) pd->p[15] == ldu->numdown) {
-            //fprintf(stderr, "(DOWN!) Computing %s and %f\n", ldu->str, pd->p[15]);
+            /*fprintf(stderr, "(DOWN!) Computing %s and %f\n", ldu->str, pd->p[15]);*/
             ldu->isdown = 1;
             out = 1;
         } else if ((int) pd->p[15] == ldu->numup) {
-            //fprintf(stderr, "(UP!) Computing %s and %f\n", ldu->str, pd->p[15]);
+            /*fprintf(stderr, "(UP!) Computing %s and %f\n", ldu->str, pd->p[15]);*/
             ldu->isdown = 0;
             out = 2;
         } else {

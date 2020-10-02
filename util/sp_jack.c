@@ -109,6 +109,7 @@ int sp_process_jack(plumber_data *pd,
         /* client_name = jack_get_client_name(jd.client[0]); */
         fprintf (stderr, "unique name `%s' assigned\n", client_name);
     }
+    fprintf(stderr, "Samplerate for jack client is %d\n", jack_get_sample_rate(jd.client[0]));
     jack_set_process_callback (jd.client[0], sp_jack_cb, &jd);
     jack_on_shutdown (jd.client[0], sp_jack_shutdown, 0);
 
@@ -157,7 +158,7 @@ int sp_process_jack(plumber_data *pd,
 
     if(wait) {
         sleep(999999999999999999);
-        //fgetc(stdin);
+        /*fgetc(stdin);*/
         plumber_stop_jack(pd, wait);
     }
 

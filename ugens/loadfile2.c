@@ -20,7 +20,7 @@ int sporth_loadfile2(sporth_stack *stack, void *ud)
 
     switch(pd->mode){
         case PLUMBER_CREATE:
-            plumber_add_ugen(pd, SPORTH_LOADFILE, NULL);
+            plumber_add_ugen(pd, SPORTH_LOADFILE2, NULL);
             if(sporth_check_args(stack, "sss") != SPORTH_OK) {
                 plumber_print(pd, "Init: not enough arguments for loadfile2\n");
                 return PLUMBER_NOTOK;

@@ -56,25 +56,26 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
         servaddr.sin_family    = AF_INET;
         servaddr.sin_addr.s_addr = INADDR_ANY;
         servaddr.sin_port = htons(PORT);
-        //if (setsockopt(lduserver->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
-        //1
-        //  }, sizeof(int)) < 0) {
-        //    fprintf(stderr, "setsockopt(SO_REUSEADDR) failed\n");
-        //}
+        /*if (setsockopt(lduserver->sockfd, SOL_SOCKET, SO_REUSEPORT, &(int) {
+        1
+          }, sizeof(int)) < 0) {
+            fprintf(stderr, "setsockopt(SO_REUSEADDR) failed\n");
+        }
+        */
         if (bind(lduserver->sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) {
             fprintf(stderr, "bind failed\n");
             exit(EXIT_FAILURE);
         }
 
         plumber_add_ugen(pd, SPORTH_LDUSERVER, lduserver);
-        sporth_stack_push_float(stack, 0);
+        /*sporth_stack_push_float(stack, 0);*/
         break;
 
 
     case PLUMBER_INIT:
         lduserver = pd->last->ud;
         /*lduserver-> ldu = sporth_stack_pop_string(stack);*/
-        sporth_stack_push_float(stack, 0);
+        /*sporth_stack_push_float(stack, 0);*/
         break;
 
 
@@ -102,7 +103,7 @@ int sporth_lduserver(sporth_stack *stack, void *ud)
             }
 
 
-            //fprintf(stderr, "Buffer %d [%s]\n", n, buffer );
+            /*fprintf(stderr, "Buffer %d [%s]\n", n, buffer );*/
             if (strncmp("/pad", buffer, 4) == 0) {
                 char holder[50];
                 sscanf(buffer, "/pad    ,s %s", &holder);

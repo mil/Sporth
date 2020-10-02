@@ -2,6 +2,7 @@ default: sporth
 
 MASTER_MAKEFILE=1
 
+CC=gcc
 CFLAGS += -O3 -fPIC -I/usr/local/include -Wall -ansi
 
 include config.mk
