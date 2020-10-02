@@ -109,7 +109,11 @@ int sp_process_jack(plumber_data *pd,
         /* client_name = jack_get_client_name(jd.client[0]); */
         fprintf (stderr, "unique name `%s' assigned\n", client_name);
     }
-    fprintf(stderr, "Samplerate for jack client is %d\n", jack_get_sample_rate(jd.client[0]));
+    if ((int) jack_get_sample_rate(jd.client[0]) != (int) jd.pd->sp->sr) {
+      fprintf(stderr, "Samplerate for jack is %d and Sporth SR is %d!\n", jack_get_sample_rate(jd.client[0]), jd.pd->sp->sr);
+      fprintf(stderr, "Refusing to start Sporth - try again with Sporth SR == Jack SR");
+      exit(1);
+    }
     jack_set_process_callback (jd.client[0], sp_jack_cb, &jd);
     jack_on_shutdown (jd.client[0], sp_jack_shutdown, 0);
 
