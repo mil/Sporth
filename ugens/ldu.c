@@ -122,7 +122,7 @@ int sporth_ldu(sporth_stack *stack, void *ud)
         free(ldu);
         break;
     default:
-        plumber_print(pd, "Error: Unknown mode!");
+        plumber_print(pd, "Error: Unknown mode!\n");
         break;
     }
     return PLUMBER_OK;

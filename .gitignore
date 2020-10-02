@@ -11,3 +11,4 @@ config.mk
 util/jacksporth
 util/cdb
 util/jsporth
+sporth.h
