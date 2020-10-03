@@ -121,6 +121,7 @@ sdelay \
 slice \
 slist \
 smoothdelay \
+smpldur \
 spa \
 sparec \
 srand \
