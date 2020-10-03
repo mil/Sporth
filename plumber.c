@@ -420,7 +420,7 @@ void sporth_run(plumber_data *pd, int argc, char *argv[],
 {
     char filename[60];
     sprintf(filename, "test.wav");
-    int sr = 44100;
+    int sr = 88200;
     int nchan = 1;
     char *time = NULL;
     argv++;
